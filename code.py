@@ -22,7 +22,8 @@ E_cipher = DES3.new(key3, DES3.MODE_EAX)
 D_cipher = DES3.new(key3, DES3.MODE_EAX, E_cipher.nonce)
 
 def main():
-    plaintext = b'tanvi is hot'
+    with open('plaintext.txt', 'rb') as p:
+        plaintext = p.read()
     layer1(plaintext)
 
 def layer1(plaintext):
