@@ -1,105 +1,111 @@
+import re
 from Crypto.Cipher import AES
 from Crypto.Cipher import DES3
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from stegano import lsb
 
-
+# Randomizer byte number function
 def get_bytes(n):
-    random_number = 6969
-    return random_number.to_bytes(n, 'big');
+    random_number = 1000
+    return random_number.to_bytes(n, "big")
 
-#Global variables for Layer 1
-public_key = RSA.import_key(open("keys/layer1Public.pem").read())
-private_key = RSA.import_key(open("keys/layer1Private.pem").read())
-cipher_e = PKCS1_OAEP.new(public_key, randfunc=get_bytes)
-cipher_d = PKCS1_OAEP.new(private_key)
 
-# Global variables for Layer 2
-with open('keys/layer2.pem', 'rb') as p:
-    key2 = p.read()
-e_cipher = AES.new(key2, AES.MODE_EAX, nonce=b'218374')
-d_cipher = AES.new(key2, AES.MODE_EAX, e_cipher.nonce)
+# Global Variables for Layer 1 - RSA
+rsa_public_key = RSA.import_key(open("keys/rsa_public_key.pem").read())
+rsa_private_key = RSA.import_key(open("keys/rsa_private_key.pem").read())
+rsa_encryptor = PKCS1_OAEP.new(rsa_public_key, randfunc=get_bytes)
+rsa_decryptor = PKCS1_OAEP.new(rsa_private_key)
 
-# Global variables for Layer 3
-with open('keys/layer2.pem', 'rb') as p:
-    key3 = p.read()
-E_cipher = DES3.new(key3, DES3.MODE_EAX, nonce=b'218374')
-D_cipher = DES3.new(key3, DES3.MODE_EAX, E_cipher.nonce)
+# Global Variables for Layer 2 - AES
+with open("keys/aes_key.pem", "rb") as p:
+    aes_key = p.read()
+aes_encryptor = AES.new(aes_key, AES.MODE_EAX, nonce=b"123456")
+aes_decryptor = AES.new(aes_key, AES.MODE_EAX, aes_encryptor.nonce)
 
-def main():
-    # with open('plaintext.txt', 'rb') as p:
-    #     plaintext = p.read()
-    # layer1(plaintext)
-    # print(cipher_e)
-    reveal()
+# Global Variables for Layer 3 - 3DES
+with open("keys/des3_key.pem", "rb") as p:
+    des_key = p.read()
+des_encryptor = DES3.new(des_key, DES3.MODE_EAX, nonce=b"123456")
+des_decryptor = DES3.new(des_key, DES3.MODE_EAX, des_encryptor.nonce)
 
-def layer1(plaintext):
+# Double Encryption Function
+def encrypt(plaintext):
 
-    # Generating ciphertext which serves as input to layer 2
-    ciphertext = cipher_e.encrypt(plaintext)
-    # print(ciphertext)
-    # Sending ciphertext to Layer 2 for Encryption
-    layer2(ciphertext)
+    # Generating ciphertext by passing through layer 1 using plaintext as input
+    ciphertext = rsa_encryptor.encrypt(plaintext)
 
-# Layer 2 - Encryption using AES-128
-def layer2(plaintext):
+    # Generating ciphertext by passing through layer 2 using ciphertext from layer 1 as input
+    ciphertext = aes_encryptor.encrypt(ciphertext)
 
-    # Generating ciphertext which serves as input to layer 3 
-    ciphertext = e_cipher.encrypt(plaintext)
-    
-    
-    # Sending Ciphertext to Layer 3 for Encryption
-    layer3(ciphertext)
+    # Generating ciphertext by passing through layer 3 using ciphertext from layer 2 as input
+    ciphertext = des_encryptor.encrypt(ciphertext)
 
-# Layer 3 - Encryption using DES3
-def layer3(plaintext):
+    # Returning Ciphertext to called function
+    return ciphertext
 
-    # Generating Ciphertext
-    ciphertext = E_cipher.encrypt(plaintext)
-    # print(ciphertext)
-    # Sending Ciphertext to Layer 3 for Decryption
-    hide(ciphertext)
 
+# Embedding text in a cover image using LSB technique
 def hide(ciphertext):
 
-    # Hiding ciphertext in image
-    # print(ciphertext)
-    
+    # Embedding ciphertext using Steganography using LSB technique
+    embedded_image = lsb.hide("images/coverImage.png", str(ciphertext))
+
+    # Saving the image as coverImageSecret.png with the embedded ciphertext
+    embedded_image.save("images/coverImageSecret.png")
 
 
-    secret = lsb.hide("images/coverImage.png", str(ciphertext))
-    secret.save("images/coverImageSecret.png")
+# Revealing hidden text from the steganographic image
+def reveal():
+
+    # Revealing the hidden ciphertext from coverImageSecret.png
+    ciphertext = lsb.reveal("images/coverImageSecret.png")
+
+    # Encoding the ciphertext to Byte format for decryption
+    ciphertext = (
+        ciphertext[2:-1].encode().decode("unicode_escape").encode("raw_unicode_escape")
+    )
+
+
+# Double Decryption Function
+def decrypt(ciphertext):
+
+    # Generating plaintext by passing through layer 3 using ciphertext as input
+    plaintext = des_decryptor.decrypt(ciphertext)
+
+    # Generating plaintext by passing through layer 2 using plaintext from layer 3 as input
+    plaintext = aes_decryptor.decrypt(plaintext)
+
+    # Generating plaintext by passing through layer 1 using plaintext from layer 2 as input
+    plaintext = rsa_decryptor.decrypt(plaintext)
+
+    # Returning plaintext to called function
+    return plaintext
+
+
+# Main Function
+def main():
+
+    # Receiving Plaintext from User
+    plaintext = input("Enter plaintext: ")
+    plaintext = bytes(plaintext, "utf-8")
+
+    # Encrypting the plaintext using Double Encryption
+    ciphertext = encrypt(plaintext)
+
+    # Hiding the Double Encrypted ciphertext in a cover image
+    hide(ciphertext)
+
+    # Calling reveal() to reveal the hidden ciphertext in the coverImageSecret.png
     reveal()
 
-def reveal():
-    
-    ciphertext = lsb.reveal("images/coverImageSecret.png")
-    ciphertext = ciphertext[2:-1].encode().decode('unicode_escape').encode("raw_unicode_escape")
-    layer3_D(ciphertext)
+    # Decrypting the obtained ciphertext from the steganographic image
+    decrypted_plaintext = decrypt(ciphertext)
+    decrypted_plaintext = plaintext.decode("utf-8")
+
+    # Printing Plaintext after Double Decryption
+    print(decrypted_plaintext)
 
 
-# Layer 3 - Decryption using DES3
-def layer3_D(ciphertext):
-
-    # Decrypting Data received after 3 layers of Encryption
-    plaintext =  D_cipher.decrypt(ciphertext)
-    # Sending Message to Layer 2 for Decryption
-    layer2_D(plaintext)
-
-# Layer 2 - Decryption using AES
-def layer2_D(ciphertext):
-
-    # Decrypting Data received from previous layer
-    plaintext = d_cipher.decrypt(ciphertext)
-    # Sending Message to Layer 1 for Decryption
-    layer1_D(plaintext)
-
-def layer1_D(ciphertext):
-
-    # Decrypting data received from previous layer
-    plaintext = cipher_d.decrypt(ciphertext)
-    # Final plaintext
-    print(plaintext)
-
+# Calling the main function
 main()
