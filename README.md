@@ -42,7 +42,7 @@ _The following steps can be followed to setup the proposed system in your system
 pip install virtualenv
 virtualenv [name of your new virtual environment]
 cd [name of your new virtual environment]
-source name_of_environment/Scripts/activate
+source Scripts/activate
 ```
 3. Clone the repository by running the following in the terminal.
 ```
