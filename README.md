@@ -43,7 +43,6 @@ pip install virtualenv
 virtualenv [name of your new virtual environment]
 cd [name of your new virtual environment]
 source Scripts/activate
-cd [name of parent directory]
 ```
 3. Clone the repository by running the following in the terminal.
 ```
