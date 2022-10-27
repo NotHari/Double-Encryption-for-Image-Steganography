@@ -1,0 +1,180 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Presentation &mdash; Stéganô 0.8.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.8.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="top" title="Stéganô 0.8.1 documentation" href="#" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="installation.html" title="Installation"
+             accesskey="N">next</a></li>
+        <li class="nav-item nav-item-0"><a href="#">Stéganô 0.8.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Presentation</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#turorial">Turorial</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#donation">Donation</a></li>
+<li><a class="reference internal" href="#contact">Contact</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Installation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="presentation">
+<h1>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/Stegano"><img alt="https://img.shields.io/pypi/pyversions/Stegano.svg?style=flat-square" src="https://img.shields.io/pypi/pyversions/Stegano.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://git.sr.ht/~cedric/stegano/releases/latest"><img alt="https://img.shields.io/pypi/v/Stegano.svg?style=flat-square" src="https://img.shields.io/pypi/v/Stegano.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://www.gnu.org/licenses/gpl-3.0.html"><img alt="https://img.shields.io/pypi/l/Stegano.svg?style=flat-square" src="https://img.shields.io/pypi/l/Stegano.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://travis-ci.org/cedricbonhomme/Stegano"><img alt="https://img.shields.io/travis/cedricbonhomme/Stegano.svg?style=flat-square" src="https://img.shields.io/travis/cedricbonhomme/Stegano.svg?style=flat-square" /></a>
+<a class="reference external image-reference" href="https://git.sr.ht/~cedric/stegano/stargazers"><img alt="https://img.shields.io/github/stars/cedricbonhomme/Stegano.svg?maxAge=2592000&amp;style=flat-square" src="https://img.shields.io/github/stars/cedricbonhomme/Stegano.svg?maxAge=2592000&amp;style=flat-square" /></a>
+<a class="reference external image-reference" href="https://saythanks.io/to/cedricbonhomme"><img alt="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg?style=flat-square" src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg?style=flat-square" /></a>
+<p><a class="reference external" href="https://git.sr.ht/~cedric/stegano">Stéganô</a> is a pure Python <a class="reference external" href="http://en.wikipedia.org/wiki/Steganography">steganography</a> module.</p>
+<p>Steganography is the art and science of writing hidden messages in such a way
+that no one, apart from the sender and intended recipient, suspects the
+existence of the message, a form of security through obscurity.
+Consequently, functions provided by Stéganô only hide messages,
+without encryption. Steganography is often used with cryptography.</p>
+<p>Stéganô implements these methods of hiding:</p>
+<ul class="simple">
+<li>using the red portion of a pixel to hide ASCII messages;</li>
+<li>using the <a class="reference external" href="http://en.wikipedia.org/wiki/Least_significant_bit">Least Significant Bit</a> (LSB) technique;</li>
+<li>using the LSB technique with sets based on generators (Sieve for Eratosthenes, Fermat, Mersenne numbers, etc.);</li>
+<li>using the description field of the image (JPEG and TIFF).</li>
+</ul>
+<p>Moreover some methods of <a class="reference external" href="http://en.wikipedia.org/wiki/Steganalysis">steganalysis</a> are provided:</p>
+<ul class="simple">
+<li>steganalysis of LSB encoding in color images;</li>
+<li>statistical steganalysis.</li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="https://www.python.org">Python</a> 3;</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/Pillow">Pillow</a>;</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/piexif">piexif</a>.</li>
+</ul>
+</div>
+<div class="section" id="turorial">
+<h1>Turorial<a class="headerlink" href="#turorial" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html">Using Stéganô as a Python module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="module.html#lsb-method">LSB method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module.html#lsb-method-with-sets">LSB method with sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module.html#description-field-of-the-image">Description field of the image</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Using Stéganô in command line</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="software.html#the-command-stegano-lsb">The command <code class="docutils literal"><span class="pre">stegano-lsb</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="software.html#the-command-stegano-lsb-set">The command <code class="docutils literal"><span class="pre">stegano-lsb-set</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="software.html#the-command-stegano-red">The command <code class="docutils literal"><span class="pre">stegano-red</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="steganalysis.html">Steganalysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="steganalysis.html#parity">Parity</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>You can also have a look at the
+<a class="reference external" href="https://git.sr.ht/~cedric/stegano/tree/master/tests">unit tests</a>.</p>
+</div>
+<div class="section" id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://git.sr.ht/~cedric/stegano">Stéganô</a> is under GPL v3 license.</p>
+</div>
+<div class="section" id="donation">
+<h1>Donation<a class="headerlink" href="#donation" title="Permalink to this headline">¶</a></h1>
+<p>If you wish and if you like Stéganô, you can donate via bitcoin.
+My bitcoin address: <a class="reference external" href="http://blockexplorer.com/address/1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ">1GVmhR9fbBeEh7rP1qNq76jWArDdDQ3otZ</a></p>
+</div>
+<div class="section" id="contact">
+<h1>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.cedricbonhomme.org">My home page</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="installation.html" title="Installation"
+             >next</a></li>
+        <li class="nav-item nav-item-0"><a href="#">Stéganô 0.8.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2012-2017, Cédric Bonhomme.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.4.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,219 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using Stéganô as a Python module &mdash; Stéganô 0.8.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.8.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="top" title="Stéganô 0.8.1 documentation" href="index.html" />
+    <link rel="next" title="Using Stéganô in command line" href="software.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="software.html" title="Using Stéganô in command line"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Stéganô 0.8.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using Stéganô as a Python module</a><ul>
+<li><a class="reference internal" href="#lsb-method">LSB method</a></li>
+<li><a class="reference internal" href="#lsb-method-with-sets">LSB method with sets</a></li>
+<li><a class="reference internal" href="#description-field-of-the-image">Description field of the image</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="software.html"
+                        title="next chapter">Using Stéganô in command line</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/module.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-stegano-as-a-python-module">
+<h1>Using Stéganô as a Python module<a class="headerlink" href="#using-stegano-as-a-python-module" title="Permalink to this headline">¶</a></h1>
+<p>You can find more examples in the
+<a class="reference external" href="https://git.sr.ht/~cedric/stegano/tree/master/tests">unit tests directory</a>.</p>
+<div class="section" id="lsb-method">
+<h2>LSB method<a class="headerlink" href="#lsb-method" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Python 3.5.1 (default, Dec  7 2015, 11:33:57)
+[GCC 4.9.2] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from stegano import lsb
+&gt;&gt;&gt; secret = lsb.hide(&quot;./tests/sample-files/Lenna.png&quot;, &quot;Hello world!&quot;)
+&gt;&gt;&gt; secret.save(&quot;./Lenna-secret.png&quot;)
+&gt;&gt;&gt; print(lsb.reveal(&quot;./Lenna-secret.png&quot;))
+Hello world!
+</pre></div>
+</div>
+</div>
+<div class="section" id="lsb-method-with-sets">
+<h2>LSB method with sets<a class="headerlink" href="#lsb-method-with-sets" title="Permalink to this headline">¶</a></h2>
+<p>Sets are used in order to select the pixels where the message will be hidden.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.5</span><span class="o">.</span><span class="mi">1</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Dec</span>  <span class="mi">7</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">57</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.9</span><span class="o">.</span><span class="mi">2</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">stegano</span> <span class="kn">import</span> <span class="n">lsbset</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">stegano.lsbset</span> <span class="kn">import</span> <span class="n">generators</span>
+
+<span class="c1"># Hide a secret with the Sieve of Eratosthenes</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">secret_message</span> <span class="o">=</span> <span class="s2">&quot;Hello World!&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">secret_image</span> <span class="o">=</span> <span class="n">lsbset</span><span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="s2">&quot;./tests/sample-files/Lenna.png&quot;</span><span class="p">,</span>
+                                <span class="n">secret_message</span><span class="p">,</span>
+                                <span class="n">generators</span><span class="o">.</span><span class="n">eratosthenes</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">secret_image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;./image.png&quot;</span><span class="p">)</span>
+
+<span class="c1"># Try to decode with another generator</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">message</span> <span class="o">=</span> <span class="n">lsbset</span><span class="o">.</span><span class="n">reveal</span><span class="p">(</span><span class="s2">&quot;./image.png&quot;</span><span class="p">,</span> <span class="n">generators</span><span class="o">.</span><span class="n">fibonacci</span><span class="p">())</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;/home/cedric/projects/Stegano/stegano/lsbset/lsbset.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">111</span><span class="p">,</span> <span class="ow">in</span> <span class="n">reveal</span>
+    <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">img_list</span><span class="p">[</span><span class="n">generated_number</span><span class="p">]:</span>
+<span class="ne">IndexError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+
+<span class="c1"># Decode with Eratosthenes</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">message</span> <span class="o">=</span> <span class="n">lsbset</span><span class="o">.</span><span class="n">reveal</span><span class="p">(</span><span class="s2">&quot;./image.png&quot;</span><span class="p">,</span> <span class="n">generators</span><span class="o">.</span><span class="n">eratosthenes</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">message</span>
+<span class="s1">&#39;Hello World!&#39;</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Generators available</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">inspect</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">all_generators</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">generators</span><span class="p">,</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isfunction</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">generator</span> <span class="ow">in</span> <span class="n">all_generators</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">generator</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">generator</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">__doc__</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">Dead_Man_Walking</span> <span class="bp">None</span>
+<span class="n">OEIS_A000217</span>
+    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">oeis</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">A000217</span>
+    <span class="n">Triangular</span> <span class="n">numbers</span><span class="p">:</span> <span class="n">a</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">n</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">+...+</span><span class="n">n</span><span class="o">.</span>
+
+<span class="n">ackermann</span>
+    <span class="n">Ackermann</span> <span class="n">number</span><span class="o">.</span>
+
+<span class="n">carmichael</span> <span class="bp">None</span>
+<span class="n">eratosthenes</span>
+    <span class="n">Generate</span> <span class="n">the</span> <span class="n">prime</span> <span class="n">numbers</span> <span class="k">with</span> <span class="n">the</span> <span class="n">sieve</span> <span class="n">of</span> <span class="n">Eratosthenes</span><span class="o">.</span>
+
+<span class="n">eratosthenes_composite</span>
+    <span class="n">Generate</span> <span class="n">the</span> <span class="n">composite</span> <span class="n">numbers</span> <span class="k">with</span> <span class="n">the</span> <span class="n">sieve</span> <span class="n">of</span> <span class="n">Eratosthenes</span><span class="o">.</span>
+
+<span class="n">fermat</span>
+    <span class="n">Generate</span> <span class="n">the</span> <span class="n">n</span><span class="o">-</span><span class="n">th</span> <span class="n">Fermat</span> <span class="n">Number</span><span class="o">.</span>
+
+<span class="n">fibonacci</span>
+    <span class="n">A</span> <span class="n">generator</span> <span class="k">for</span> <span class="n">Fibonacci</span> <span class="n">numbers</span><span class="p">,</span> <span class="n">goes</span> <span class="n">to</span> <span class="nb">next</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">series</span> <span class="n">on</span> <span class="n">each</span> <span class="n">call</span><span class="o">.</span>
+    <span class="n">This</span> <span class="n">generator</span> <span class="n">start</span> <span class="n">at</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">377</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">987</span><span class="p">,</span> <span class="mi">1597</span><span class="p">,</span> <span class="mi">2584</span><span class="p">,</span> <span class="mi">4181</span><span class="p">,</span> <span class="mi">6765</span><span class="p">,</span> <span class="mi">10946</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">See</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">oeis</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">A000045</span>
+
+<span class="n">identity</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="n">log_gen</span>
+    <span class="n">Logarithmic</span> <span class="n">generator</span><span class="o">.</span>
+
+<span class="n">mersenne</span>
+    <span class="n">Generate</span> <span class="mi">2</span><span class="o">^</span><span class="n">n</span><span class="o">-</span><span class="mf">1.</span>
+
+<span class="n">syracuse</span>
+    <span class="n">Generate</span> <span class="n">the</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">Syracuse</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description-field-of-the-image">
+<h2>Description field of the image<a class="headerlink" href="#description-field-of-the-image" title="Permalink to this headline">¶</a></h2>
+<p>For JPEG and TIFF images.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.5</span><span class="o">.</span><span class="mi">1</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Dec</span>  <span class="mi">7</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">57</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.9</span><span class="o">.</span><span class="mi">2</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">stegano</span> <span class="kn">import</span> <span class="n">exifHeader</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">secret</span> <span class="o">=</span> <span class="n">exifHeader</span><span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="s2">&quot;./tests/sample-files/20160505T130442.jpg&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;./image.jpg&quot;</span><span class="p">,</span> <span class="n">secret_message</span><span class="o">=</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">exifHeader</span><span class="o">.</span><span class="n">reveal</span><span class="p">(</span><span class="s2">&quot;./image.jpg&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="software.html" title="Using Stéganô in command line"
+             >next</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Stéganô 0.8.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2012-2017, Cédric Bonhomme.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.4.
+    </div>
+  </body>
+</html>
