@@ -1,4 +1,3 @@
-import re
 from Crypto.Cipher import AES
 from Crypto.Cipher import DES3
 from Crypto.PublicKey import RSA
