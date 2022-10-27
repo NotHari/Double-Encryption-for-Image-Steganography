@@ -3,7 +3,9 @@ from Crypto.Cipher import AES
 from Crypto.Cipher import DES3
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
-from stegano import lsb
+from stegano import lsbset
+from stegano.lsbset import generators
+import lzma
 
 # Randomizer byte number function
 def get_bytes(n):
@@ -49,7 +51,7 @@ def encrypt(plaintext):
 def hide(ciphertext):
 
     # Embedding ciphertext using Steganography using LSB technique
-    embedded_image = lsb.hide("images/coverImage.png", str(ciphertext))
+    embedded_image = lsbset.hide("images/coverImage.png", str(ciphertext), generators.eratosthenes())
 
     # Saving the image as coverImageSecret.png with the embedded ciphertext
     embedded_image.save("images/coverImageSecret.png")
@@ -59,12 +61,14 @@ def hide(ciphertext):
 def reveal():
 
     # Revealing the hidden ciphertext from coverImageSecret.png
-    ciphertext = lsb.reveal("images/coverImageSecret.png")
+    ciphertext = lsbset.reveal("images/coverImageSecret.png", generators.eratosthenes())
 
     # Encoding the ciphertext to Byte format for decryption
     ciphertext = (
         ciphertext[2:-1].encode().decode("unicode_escape").encode("raw_unicode_escape")
     )
+
+    return ciphertext
 
 
 # Double Decryption Function
@@ -90,6 +94,9 @@ def main():
     plaintext = input("Enter plaintext: ")
     plaintext = bytes(plaintext, "utf-8")
 
+    # Compressing plaintext before Double Encryption
+    plaintext = lzma.compress(plaintext)
+
     # Encrypting the plaintext using Double Encryption
     ciphertext = encrypt(plaintext)
 
@@ -97,11 +104,14 @@ def main():
     hide(ciphertext)
 
     # Calling reveal() to reveal the hidden ciphertext in the coverImageSecret.png
-    reveal()
+    revealed_ciphertext = reveal()
 
     # Decrypting the obtained ciphertext from the steganographic image
-    decrypted_plaintext = decrypt(ciphertext)
-    decrypted_plaintext = plaintext.decode("utf-8")
+    decrypted_plaintext = decrypt(revealed_ciphertext)
+
+    # Decompressing the obtained plaintext after Decryption
+    decrypted_plaintext = lzma.decompress(decrypted_plaintext)
+    decrypted_plaintext = decrypted_plaintext.decode("utf-8")
 
     # Printing Plaintext after Double Decryption
     print(decrypted_plaintext)

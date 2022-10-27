@@ -1,0 +1,347 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using Stéganô in command line &mdash; Stéganô 0.8.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.8.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="top" title="Stéganô 0.8.1 documentation" href="index.html" />
+    <link rel="next" title="Steganalysis" href="steganalysis.html" />
+    <link rel="prev" title="Using Stéganô as a Python module" href="module.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="steganalysis.html" title="Steganalysis"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="module.html" title="Using Stéganô as a Python module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Stéganô 0.8.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using Stéganô in command line</a><ul>
+<li><a class="reference internal" href="#the-command-stegano-lsb">The command <code class="docutils literal"><span class="pre">stegano-lsb</span></code></a><ul>
+<li><a class="reference internal" href="#display-help">Display help</a></li>
+<li><a class="reference internal" href="#hide-and-reveal-a-text-message">Hide and reveal a text message</a></li>
+<li><a class="reference internal" href="#specify-an-encoding">Specify an encoding</a></li>
+<li><a class="reference internal" href="#hide-and-reveal-a-binary-file">Hide and reveal a binary file</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-command-stegano-lsb-set">The command <code class="docutils literal"><span class="pre">stegano-lsb-set</span></code></a><ul>
+<li><a class="reference internal" href="#id1">Hide and reveal a text message</a></li>
+<li><a class="reference internal" href="#list-all-available-generators">List all available generators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-command-stegano-red">The command <code class="docutils literal"><span class="pre">stegano-red</span></code></a><ul>
+<li><a class="reference internal" href="#id2">Display help</a></li>
+<li><a class="reference internal" href="#id3">Hide and reveal a text message</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="module.html"
+                        title="previous chapter">Using Stéganô as a Python module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="steganalysis.html"
+                        title="next chapter">Steganalysis</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/software.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-stegano-in-command-line">
+<h1>Using Stéganô in command line<a class="headerlink" href="#using-stegano-in-command-line" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-command-stegano-lsb">
+<h2>The command <code class="docutils literal"><span class="pre">stegano-lsb</span></code><a class="headerlink" href="#the-command-stegano-lsb" title="Permalink to this headline">¶</a></h2>
+<p>Hide and reveal a message with the LSB method.</p>
+<div class="section" id="display-help">
+<h3>Display help<a class="headerlink" href="#display-help" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ stegano-lsb --help
+usage: stegano-lsb <span class="o">[</span>-h<span class="o">]</span> <span class="o">{</span>hide,reveal<span class="o">}</span> ...
+
+positional arguments:
+  <span class="o">{</span>hide,reveal<span class="o">}</span>  sub-command <span class="nb">help</span>
+    hide         hide <span class="nb">help</span>
+    reveal       reveal <span class="nb">help</span>
+
+optional arguments:
+  -h, --help     show this <span class="nb">help</span> message and <span class="nb">exit</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ stegano-lsb hide --help
+usage: stegano-lsb hide <span class="o">[</span>-h<span class="o">]</span> -i INPUT_IMAGE_FILE <span class="o">[</span>-e <span class="o">{</span>UTF-8,UTF-32LE<span class="o">}]</span>
+                    <span class="o">(</span>-m SECRET_MESSAGE <span class="p">|</span> -f SECRET_FILE<span class="o">)</span> -o
+                    OUTPUT_IMAGE_FILE
+
+optional arguments:
+  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+  -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
+                        Input image file.
+  -e <span class="o">{</span>UTF-8,UTF-32LE<span class="o">}</span>, --encoding <span class="o">{</span>UTF-8,UTF-32LE<span class="o">}</span>
+                        Specify the encoding of the message to hide. UTF-8
+                        <span class="o">(</span>default<span class="o">)</span> or UTF-32LE.
+  -m SECRET_MESSAGE     Your secret message to hide <span class="o">(</span>non binary<span class="o">)</span>.
+  -f SECRET_FILE        Your secret to hide <span class="o">(</span>Text or any binary file<span class="o">)</span>.
+  -o OUTPUT_IMAGE_FILE, --output OUTPUT_IMAGE_FILE
+                        Output image containing the secret.
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ stegano-lsb reveal --help
+usage: stegano-lsb reveal <span class="o">[</span>-h<span class="o">]</span> -i INPUT_IMAGE_FILE <span class="o">[</span>-e <span class="o">{</span>UTF-8,UTF-32LE<span class="o">}]</span>
+                          <span class="o">[</span>-o SECRET_BINARY<span class="o">]</span>
+
+optional arguments:
+  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+  -i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
+                        Input image file.
+  -e <span class="o">{</span>UTF-8,UTF-32LE<span class="o">}</span>, --encoding <span class="o">{</span>UTF-8,UTF-32LE<span class="o">}</span>
+                        Specify the encoding of the message to reveal. UTF-8
+                        <span class="o">(</span>default<span class="o">)</span> or UTF-32LE.
+  -o SECRET_BINARY      Output <span class="k">for</span> the binary secret <span class="o">(</span>Text or any binary
+                        file<span class="o">)</span>.
+</pre></div>
+</div>
+</div>
+<div class="section" id="hide-and-reveal-a-text-message">
+<h3>Hide and reveal a text message<a class="headerlink" href="#hide-and-reveal-a-text-message" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m <span class="s1">&#39;Hello World!&#39;</span> -o ./Lenna_enc.png
+$ stegano-lsb reveal -i ./Lenna_enc.png
+Hello World!
+</pre></div>
+</div>
+</div>
+<div class="section" id="specify-an-encoding">
+<h3>Specify an encoding<a class="headerlink" href="#specify-an-encoding" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ stegano-lsb hide -i ./tests/sample-files/Lenna.png -m <span class="s1">&#39;I love 🍕 and 🍫.&#39;</span> -e UTF-32LE -o ./Lenna_enc.png
+$ stegano-lsb reveal -i ./Lenna_enc.png
+I love 🍕 and 🍫.
+</pre></div>
+</div>
+<p>The default encoding is UTF-8.</p>
+</div>
+<div class="section" id="hide-and-reveal-a-binary-file">
+<h3>Hide and reveal a binary file<a class="headerlink" href="#hide-and-reveal-a-binary-file" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ wget http://www.gnu.org/music/free-software-song.ogg
+$ stegano-lsb hide -i ./tests/sample-files/Montenach.png -f ./free-software-song.ogg -o ./Montenach_enc.png
+$ rm free-software-song.ogg
+$ stegano-lsb reveal -i ./Montenach_enc.png -o ./song.ogg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-command-stegano-lsb-set">
+<h2>The command <code class="docutils literal"><span class="pre">stegano-lsb-set</span></code><a class="headerlink" href="#the-command-stegano-lsb-set" title="Permalink to this headline">¶</a></h2>
+<p>Sets are used in order to select the pixels where the message will be hidden.</p>
+<div class="section" id="id1">
+<h3>Hide and reveal a text message<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Hide the message with the Sieve of Eratosthenes</span>
+$ stegano-lsb-set hide -i ./tests/sample-files/Montenach.png --generator eratosthenes -m <span class="s1">&#39;Joyeux Noël!&#39;</span> -o ./surprise.png
+
+<span class="c1"># Try to reveal with Mersenne numbers</span>
+$ stegano-lsb-set reveal --generator mersenne -i ./surprise.png
+
+<span class="c1"># Try to reveal with fermat numbers</span>
+$ stegano-lsb-set reveal --generator fermat -i ./surprise.png
+
+<span class="c1"># Try to reveal with carmichael numbers</span>
+$ stegano-lsb-set reveal --generator carmichael -i ./surprise.png
+
+<span class="c1"># Try to reveal with Sieve of Eratosthenes</span>
+$ stegano-lsb-set reveal --generator eratosthenes -i ./surprise.png
+</pre></div>
+</div>
+<p>An other example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Hide the message - LSB with a set defined by the identity function (f(x) = x).</span>
+stegano-lsb-set hide -i ./tests/sample-files/Montenach.png --generator identity -m <span class="s1">&#39;I like steganography.&#39;</span> -o ./enc-identity.png
+
+<span class="c1"># Hide the message - LSB only.</span>
+stegano-lsb hide -i ./tests/sample-files/Montenach.png -m <span class="s1">&#39;I like steganography.&#39;</span> -o ./enc.png
+
+<span class="c1"># Check if the two generated files are the same.</span>
+sha1sum ./enc-identity.png ./enc.png
+
+<span class="c1"># The output of lsb is given to lsb-set.</span>
+stegano-lsb-set reveal -i ./enc.png --generator identity
+
+<span class="c1"># The output of lsb-set is given to lsb.</span>
+stegano-lsb reveal -i ./enc-identity.png
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-all-available-generators">
+<h3>List all available generators<a class="headerlink" href="#list-all-available-generators" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ stegano-lsb-set list-generators
+Generator id:
+    ackermann
+Desciption:
+    Ackermann number.
+
+Generator id:
+    ackermann_naive
+Desciption:
+    Ackermann number.
+
+Generator id:
+    carmichael
+Desciption:
+    Composite numbers n such that a^<span class="o">(</span>n-1<span class="o">)</span> <span class="o">==</span> <span class="m">1</span> <span class="o">(</span>mod n<span class="o">)</span> <span class="k">for</span> every a coprime
+    to n.
+    https://oeis.org/A002997
+
+Generator id:
+    composite
+Desciption:
+    Generate the composite numbers using the sieve of Eratosthenes.
+    https://oeis.org/A002808
+
+Generator id:
+    eratosthenes
+Desciption:
+    Generate the prime numbers with the sieve of Eratosthenes.
+    https://oeis.org/A000040
+
+Generator id:
+    fermat
+Desciption:
+    Generate the n-th Fermat Number.
+    https://oeis.org/A000215
+
+Generator id:
+    fibonacci
+Desciption:
+    Generate the sequence of Fibonacci.
+    https://oeis.org/A000045
+
+Generator id:
+    identity
+Desciption:
+    f<span class="o">(</span>x<span class="o">)</span> <span class="o">=</span> x
+
+Generator id:
+    log_gen
+Desciption:
+    Logarithmic generator.
+
+Generator id:
+    mersenne
+Desciption:
+    Generate 2^p - 1, where p is prime.
+    https://oeis.org/A001348
+
+Generator id:
+    triangular_numbers
+Desciption:
+    Triangular numbers: a<span class="o">(</span>n<span class="o">)</span> <span class="o">=</span> C<span class="o">(</span>n+1,2<span class="o">)</span> <span class="o">=</span> n<span class="o">(</span>n+1<span class="o">)</span>/2 <span class="o">=</span> 0+1+2+...+n.
+    http://oeis.org/A000217
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-command-stegano-red">
+<h2>The command <code class="docutils literal"><span class="pre">stegano-red</span></code><a class="headerlink" href="#the-command-stegano-red" title="Permalink to this headline">¶</a></h2>
+<p>Hide and reveal a text message with the red portion of a pixel.</p>
+<div class="section" id="id2">
+<h3>Display help<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ stegano-red hide --help
+usage: stegano-red hide <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-i INPUT_IMAGE_FILE<span class="o">]</span> <span class="o">[</span>-m SECRET_MESSAGE<span class="o">]</span>
+                    <span class="o">[</span>-o OUTPUT_IMAGE_FILE<span class="o">]</span>
+
+optional arguments:
+-h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+-i INPUT_IMAGE_FILE, --input INPUT_IMAGE_FILE
+                    Image file
+-m SECRET_MESSAGE     Your secret message to hide <span class="o">(</span>non binary<span class="o">)</span>.
+-o OUTPUT_IMAGE_FILE, --output OUTPUT_IMAGE_FILE
+                    Image file
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Hide and reveal a text message<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ stegano-red hide -i ./tests/sample-files/Lenna.png -m <span class="s1">&#39;Basic steganography technique.&#39;</span> -o ~/Lenna1.png
+$ stegano-red reveal -i ~/Lenna1.png
+Basic steganography technique.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="steganalysis.html" title="Steganalysis"
+             >next</a></li>
+        <li class="right" >
+          <a href="module.html" title="Using Stéganô as a Python module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Stéganô 0.8.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2012-2017, Cédric Bonhomme.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.4.
+    </div>
+  </body>
+</html>

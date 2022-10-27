@@ -1,1 +1,1 @@
-ad()
+revealed_ciphertext = decompress(revealed_ciphertext)
