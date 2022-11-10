@@ -11,7 +11,6 @@ def get_bytes(n):
     random_number = 1000
     return random_number.to_bytes(n, "big")
 
-
 # Global Variables for Layer 1 - RSA
 rsa_public_key = RSA.import_key(open("keys/rsa_public_key.pem").read())
 rsa_private_key = RSA.import_key(open("keys/rsa_private_key.pem").read())
@@ -35,12 +34,18 @@ def encrypt(plaintext):
 
     # Generating ciphertext by passing through layer 1 using plaintext as input
     ciphertext = rsa_encryptor.encrypt(plaintext)
+    print('\nLayer 1 RSA Ciphertext: ')
+    print(ciphertext)
 
     # Generating ciphertext by passing through layer 2 using ciphertext from layer 1 as input
     ciphertext = aes_encryptor.encrypt(ciphertext)
+    print('\n\nLayer 2 AES Ciphertext: ')
+    print(ciphertext)
 
     # Generating ciphertext by passing through layer 3 using ciphertext from layer 2 as input
     ciphertext = des_encryptor.encrypt(ciphertext)
+    print('\n\nLayer 3 3DES Ciphertext: ')
+    print(ciphertext)
 
     # Returning Ciphertext to called function
     return ciphertext
@@ -50,17 +55,17 @@ def encrypt(plaintext):
 def hide(ciphertext):
 
     # Embedding ciphertext using Steganography using LSB technique
-    embedded_image = lsbset.hide("images/coverImage.png", str(ciphertext), generators.eratosthenes())
+    embedded_image = lsbset.hide("images/coverImage3.png", str(ciphertext), generators.eratosthenes())
 
     # Saving the image as coverImageSecret.png with the embedded ciphertext
-    embedded_image.save("images/coverImageSecret.png")
+    embedded_image.save("images/coverImageSecret3.png")
 
 
 # Revealing hidden text from the steganographic image
 def reveal():
 
     # Revealing the hidden ciphertext from coverImageSecret.png
-    ciphertext = lsbset.reveal("images/coverImageSecret.png", generators.eratosthenes())
+    ciphertext = lsbset.reveal("images/coverImageSecret3.png", generators.eratosthenes())
 
     # Encoding the ciphertext to Byte format for decryption
     ciphertext = (
@@ -107,12 +112,15 @@ def main():
 
     # Decrypting the obtained ciphertext from the steganographic image
     decrypted_plaintext = decrypt(revealed_ciphertext)
+    # print('\n\Compressed Output :')
+    # print(decrypted_plaintext)
 
     # Decompressing the obtained plaintext after Decryption
     decrypted_plaintext = lzma.decompress(decrypted_plaintext)
     decrypted_plaintext = decrypted_plaintext.decode("utf-8")
 
     # Printing Plaintext after Double Decryption
+    print('\n\nFinal Output :')
     print(decrypted_plaintext)
 
 
