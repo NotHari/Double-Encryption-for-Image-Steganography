@@ -1,5 +1,6 @@
 
 # Double Encryption for Image Steganography
+![image](https://github.com/NotHari/Double-Encryption-for-Image-Steganography/blob/main/assets/cover1.jpg)
 
 Image Steganography can be used to communicate secretly by hiding data within images, audio files and other media. However, it is easy for a cybercriminal to decrypt these media files and extract the data which poses a severe threat to integrity.
 
@@ -64,15 +65,15 @@ pip install -r requirements.txt
 ## Results
 
 _The following screenshot shows the terminal output upon running the code:-_
-![image]()
+![image](https://github.com/NotHari/Double-Encryption-for-Image-Steganography/blob/main/assets/ss.png)
 
 
 _The following figures show the results of three images after going through our proposed method of image steganography:-_
 | S.no. | Cover Image | Steganographic Image |
 |-------|-------------|----------------------|
-| 1     | ![image]()  | ![image]()           |
-| 2     | ![image]()  | ![image]()           |
-| 3     | ![image]()  | ![image]()           |
+| 1     | ![image](https://github.com/NotHari/Double-Encryption-for-Image-Steganography/blob/main/assets/1.png)  | ![image](https://github.com/NotHari/Double-Encryption-for-Image-Steganography/blob/main/assets/1.png)           |
+| 2     | ![image](https://github.com/NotHari/Double-Encryption-for-Image-Steganography/blob/main/assets/2.png)  | ![image](https://github.com/NotHari/Double-Encryption-for-Image-Steganography/blob/main/assets/2.png)           |
+| 3     | ![image](https://github.com/NotHari/Double-Encryption-for-Image-Steganography/blob/main/assets/3.png)  | ![image](https://github.com/NotHari/Double-Encryption-for-Image-Steganography/blob/main/assets/3.png)           |
 
 _The following figure shows the PSNR of the same three images:-_
 | Cover Image   | Size of Image in KB | Secret Message in Bytes | Proposed Method PSNR |
