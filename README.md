@@ -1,5 +1,5 @@
 
-# Implementation of Cryptographic Algorithms for Steganography
+# Double Encryption for Image Steganography
 
 Image Steganography can be used to communicate secretly by hiding data within images, audio files and other media. However, it is easy for a cybercriminal to decrypt these media files and extract the data which poses a severe threat to integrity.
 
