@@ -3,7 +3,9 @@
 
 Image Steganography can be used to communicate secretly by hiding data within images, audio files and other media. However, it is easy for a cybercriminal to decrypt these media files and extract the data which poses a severe threat to integrity.
 
-To combat the above stated problem, techniques that combine the advantages of cryptography with those of steganography are needed. 
+To combat the above stated problem, we look at the double encryption of plaintext before embedding the data in a cover image. The message is encrypted using Rivest-Shamir-Adleman (RSA), Advanced Encryption Standard (AES) and lastly by Triple Data Encryption Standard (3DES).
+
+The double encrypted data is compressed with LZMA technique to reduce the capacity of the data to be embedded in the steganographic image. To increase the robustness, the Sieve of Eratosthenes algorithm is used for insertion using the Least Significant Bit steganography.
 
 
 
@@ -11,6 +13,7 @@ To combat the above stated problem, techniques that combine the advantages of cr
 - [About the Project](#about-the-project)
 - [Library Used](#library-used)
 - [Installation](#installation)
+- [Results](#results)
 
 ## About the Project
 
@@ -32,6 +35,10 @@ Our project makes use of the pycryptodome library which is a python library that
 
 The documentation to the library can be found [here](https://pycryptodome.readthedocs.io/en/latest/src/introduction.html).
 
+Additionally, the LZMA library is used to compress and decompress the data.
+
+The documentation to the LZMA library can be found [here](https://docs.python.org/3/library/lzma.html)
+
 ## Installation
 
 _The following steps can be followed to setup the proposed system in your system:-_
@@ -50,9 +57,28 @@ git clone https://github.com/NotHari/Double-Encryption.git
 ```
 4. To install the dependencies to run the code execute the following after activating your python virtual environment.
 ```
-pip install pycryptodome
+pip install -r requirements.txt
 ```
 5. Run code to see the output on your terminal.
 
+## Results
+
+_The following screenshot shows the terminal output upon running the code:-_
+![image]()
+
+
+_The following figures show the results of three images after going through our proposed method of image steganography:-_
+| S.no. | Cover Image | Steganographic Image |
+|-------|-------------|----------------------|
+| 1     | ![image]()  | ![image]()           |
+| 2     | ![image]()  | ![image]()           |
+| 3     | ![image]()  | ![image]()           |
+
+_The following figure shows the PSNR of the same three images:-_
+| Cover Image   | Size of Image in KB | Secret Message in Bytes | Proposed Method PSNR |
+|---------------|---------------------|-------------------------|----------------------|
+| Cover Image 1 | 120                 | 25                      | 79.7239              |
+| Cover Image 2 | 123                 | 25                      | 73.7692              |
+| Cover Image 3 | 135                 | 25                      | 77.6347              |
 
 Made with ❤ by [Harikrishnan Nair](https://github.com/NotHari) &  [Tanvi Johari](https://github.com/TJ202)
