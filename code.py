@@ -1,10 +1,10 @@
-from Crypto.Cipher import AES
-from Crypto.Cipher import DES3
+import lzma
+
+from Crypto.Cipher import AES, DES3, PKCS1_OAEP
 from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
 from stegano import lsbset
 from stegano.lsbset import generators
-import lzma
+
 
 # Randomizer byte number function
 def get_bytes(n):
@@ -55,17 +55,17 @@ def encrypt(plaintext):
 def hide(ciphertext):
 
     # Embedding ciphertext using Steganography using LSB technique
-    embedded_image = lsbset.hide("images/coverImage3.png", str(ciphertext), generators.eratosthenes())
+    embedded_image = lsbset.hide("images/coverImage1.png", str(ciphertext), generators.eratosthenes())
 
     # Saving the image as coverImageSecret.png with the embedded ciphertext
-    embedded_image.save("images/coverImageSecret3.png")
+    embedded_image.save("images/coverImageSecret1.png")
 
 
 # Revealing hidden text from the steganographic image
 def reveal():
 
     # Revealing the hidden ciphertext from coverImageSecret.png
-    ciphertext = lsbset.reveal("images/coverImageSecret3.png", generators.eratosthenes())
+    ciphertext = lsbset.reveal("images/coverImageSecret1.png", generators.eratosthenes())
 
     # Encoding the ciphertext to Byte format for decryption
     ciphertext = (
