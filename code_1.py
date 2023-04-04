@@ -2,7 +2,7 @@ import lzma
 
 from Crypto.Cipher import AES, DES3, PKCS1_OAEP
 from Crypto.PublicKey import RSA
-from stegano import lsbset
+from stegano import lsbset, lsb
 from stegano.lsbset import generators
 
 
@@ -55,7 +55,7 @@ def encrypt(plaintext):
 def hide(ciphertext,im1,im1Secr1):
 
     # Embedding ciphertext using Steganography using LSB technique
-    embedded_image = lsbset.hide(im1, str(ciphertext), generators.eratosthenes())
+    embedded_image = lsb.hide(im1, str(ciphertext))
 
     # Saving the image as coverImageSecret.png with the embedded ciphertext
     embedded_image.save(im1Secr1)
@@ -65,7 +65,7 @@ def hide(ciphertext,im1,im1Secr1):
 def reveal(im1Secr1):
 
     # Revealing the hidden ciphertext from coverImageSecret.png
-    ciphertext = lsbset.reveal(im1Secr1, generators.eratosthenes())
+    ciphertext = lsb.reveal(im1Secr1)
 
     # Encoding the ciphertext to Byte format for decryption
     ciphertext = (
@@ -132,9 +132,9 @@ im1Secr2 = "images/tulipsSecret2.png"
 im1Secr3 = "images/tulipsSecret3.png"
 im1Secr4 = "images/tulipsSecret4.png"
 im1Secr5 = "images/tulipsSecret5.png"
-
+strin = "LztxSwF)KCatW@KD]rR;!Hh4CA.=BE9PTk+MU;54?8_GR)+i:3-F{uT8t*FYh#j%$_4R{j{({ht=yWKGkBH##_@&@wR}&cA]]H9?"
 # main("M5Csn",im1,im1Secr1)
 # main("10TkfR2iWg",im1,im1Secr2)
 # main("bvrod1ElJRD8T6H",im1,im1Secr3)
 # main("MiMvlXX4vMD9WfssukC2",im1,im1Secr4)
-main("uejgbhlOUWEGHOGHRJGHALJGHKJHLjhljshlgjshdgkiyud",im1,im1Secr5)
+main(strin,im1,im1Secr1)
