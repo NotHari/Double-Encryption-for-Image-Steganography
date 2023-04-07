@@ -82,4 +82,3 @@ _The following figure shows the PSNR of the same three images:-_
 | Cover Image 2 | 123                 | 25                      | 73.7692              |
 | Cover Image 3 | 135                 | 25                      | 77.6347              |
 
-Made with ❤ by [Harikrishnan Nair](https://github.com/NotHari) &  [Tanvi Johari](https://github.com/TJ202)
